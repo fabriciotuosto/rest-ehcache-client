@@ -8,11 +8,11 @@
 		</bean>
 
 
-		<bean id="md5hasher" class="org.ehcache.rest.client.Md5ObjectHasher">
+		<bean id="md5hashGenerator" class="org.ehcache.rest.client.Md5HashGenerator">
 			<constructor-arg ref="byteArrays" />
 		</bean>
 		
-		<bean id="sha1hasher" class="org.ehcache.rest.client.Sha1ObjectHasher">
+		<bean id="sha1hasher" class="org.ehcache.rest.client.Sha1HashGenerator">
 			<constructor-arg ref="byteArrays" />
 		</bean>
 		
@@ -34,7 +34,7 @@
 		<bean id="cache" class="org.ehcache.rest.client.RemoteCache">
 			<constructor-arg ref="location" />
 			<constructor-arg ref="restClient" />
-			<constructor-arg ref="md5hasher" />
+			<constructor-arg ref="md5hashGenerator" />
 		</bean>
 
 	</beans>

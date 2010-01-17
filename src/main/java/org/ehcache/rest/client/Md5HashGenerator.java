@@ -11,16 +11,16 @@ import org.slf4j.LoggerFactory;
 /**
  * @see HashGenerator
  */
-class Md5ObjectHasher implements HashGenerator {
+class Md5HashGenerator implements HashGenerator {
 
 	/**
 	 * Logger for the class.
 	 */
-	private static final Logger log = LoggerFactory.getLogger(Md5ObjectHasher.class);
+	private static final Logger log = LoggerFactory.getLogger(Md5HashGenerator.class);
 	
 	private final ByteArrays transformer;
 	
-	public Md5ObjectHasher(ByteArrays transformer) {
+	public Md5HashGenerator(ByteArrays transformer) {
 		this.transformer = Preconditions.checkNotNull(
 				transformer, "Transform shouldn't be null");
 	}

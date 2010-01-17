@@ -5,7 +5,7 @@ import static org.mockito.Mockito.mock;
 
 import org.ehcache.rest.client.Cache;
 import org.ehcache.rest.client.CacheLocation;
-import org.ehcache.rest.client.Md5ObjectHasher;
+import org.ehcache.rest.client.Md5HashGenerator;
 import org.ehcache.rest.client.ByteArrays;
 import org.ehcache.rest.client.RemoteCache;
 import org.ehcache.rest.client.RestClient;
@@ -26,7 +26,7 @@ public class RemoteCacheTest {
 
     private Cache cache;
     private static CacheLocation location;
-    private Md5ObjectHasher hasher = new Md5ObjectHasher(new ByteArrays());
+    private Md5HashGenerator hasher = new Md5HashGenerator(new ByteArrays());
 	private RestClient restTemplate;
 
     @BeforeClass
