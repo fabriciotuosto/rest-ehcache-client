@@ -1,21 +1,10 @@
 package org.ehcache.rest.client;
 
-import java.io.ByteArrayInputStream;
-import java.io.ByteArrayOutputStream;
-import java.io.IOException;
 import java.io.Serializable;
-import java.util.Collections;
 
-import org.apache.commons.io.IOUtils;
 import org.ehcache.rest.client.util.Preconditions;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.http.HttpMethod;
-import org.springframework.http.client.ClientHttpResponse;
-import org.springframework.web.client.ResponseExtractor;
-import org.springframework.web.client.RestTemplate;
-
-import com.sun.org.apache.xml.internal.security.utils.HelperNodeList;
 
 /**
  * Cache implementation which communicates with a remote cache instance based on
