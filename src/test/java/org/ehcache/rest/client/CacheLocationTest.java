@@ -16,9 +16,9 @@ public class CacheLocationTest {
     @Test
     public void testUrlConstructedCorrectly() {
 
-        CacheLocation location = new CacheLocation("localhost", 8001, "cache-impl","dpfsm");
+        CacheLocation location = new CacheLocation("localhost", 8001, "cache-impl","test");
         assertEquals("Url is not correct",
-                "http://localhost:8001/cache-impl/dpfsm",
+                "http://localhost:8001/cache-impl/test",
                 location.getBaseCacheUrl());
     }
 }
