@@ -20,7 +20,7 @@ public class Duration {
 	 */
 	public Duration(long duration, TimeUnit unit) {
         super();
-		this.unit = (TimeUnit) Preconditions.checkNotNull(unit);
+		this.unit = Preconditions.checkNotNull(unit);
 		this.duration = duration;
 	}
 

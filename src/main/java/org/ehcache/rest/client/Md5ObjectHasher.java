@@ -21,7 +21,7 @@ class Md5ObjectHasher implements ObjectHasher {
 	private final ObjectHelper transformer;
 	
 	public Md5ObjectHasher(ObjectHelper transformer) {
-		this.transformer = (ObjectHelper) Preconditions.checkNotNull(
+		this.transformer = Preconditions.checkNotNull(
 				transformer, "Transform shouldn't be null");
 	}
 

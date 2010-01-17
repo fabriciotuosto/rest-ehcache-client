@@ -38,6 +38,12 @@ class RemoteCache implements Cache {
 
 
 
+	/**
+	 * 
+	 * @param cacheLocation
+	 * @param restClient
+	 * @param hasher
+	 */
 	public RemoteCache(CacheLocation cacheLocation, RestClient restClient,
 			ObjectHasher hasher) {
 		this.restClient = Preconditions.checkNotNull(restClient);

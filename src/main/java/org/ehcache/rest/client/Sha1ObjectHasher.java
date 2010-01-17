@@ -18,7 +18,7 @@ class Sha1ObjectHasher implements ObjectHasher {
 	private final ObjectHelper transformer;
 
 	public Sha1ObjectHasher(ObjectHelper transformer) {
-		this.transformer = (ObjectHelper) Preconditions.checkNotNull(
+		this.transformer = Preconditions.checkNotNull(
 				transformer, "Transform shouldn't be null");
 	}
 	

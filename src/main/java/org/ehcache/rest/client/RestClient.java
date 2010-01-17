@@ -5,6 +5,7 @@ import java.io.IOException;
 import java.io.Serializable;
 
 import org.apache.commons.io.IOUtils;
+import org.ehcache.rest.client.util.Preconditions;
 import org.springframework.http.HttpMethod;
 import org.springframework.http.client.ClientHttpResponse;
 import org.springframework.web.client.HttpClientErrorException;
@@ -18,8 +19,8 @@ class RestClient {
 
 
 	public RestClient(RestTemplate restTemplate,ObjectHelper helper) {
-		this.restTemplate = restTemplate;
-		this.helper = helper;
+		this.restTemplate = Preconditions.checkNotNull(restTemplate);
+		this.helper = Preconditions.checkNotNull(helper);
 	}
 	
 	
