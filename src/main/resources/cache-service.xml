@@ -12,7 +12,7 @@
 			<constructor-arg ref="byteArrays" />
 		</bean>
 		
-		<bean id="sha1hasher" class="org.ehcache.rest.client.Sha1HashGenerator">
+		<bean id="sha1hashGenerator" class="org.ehcache.rest.client.Sha1HashGenerator">
 			<constructor-arg ref="byteArrays" />
 		</bean>
 		
