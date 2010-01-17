@@ -26,7 +26,7 @@ import org.springframework.web.client.RestTemplate;
 
 public class RemoteCacheIntegrationTest {
 
-    private static final URI CACHE_LOCATION = URI.create("http://192.168.1.131:8080/ehcache/rest/dpfsm");
+    private static final URI CACHE_LOCATION = URI.create("http://192.168.1.131:8080/ehcache/rest/test");
 	private static Cache cache;
 	private static RestTemplate restTemplate;
 	
