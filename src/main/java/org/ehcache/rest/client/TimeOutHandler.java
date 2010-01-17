@@ -25,7 +25,7 @@ class TimeOutHandler {
 	 * it remains in a static field because it creates threads
 	 * and they are expensive to be continuously creating them
 	 */
-    private static final ScheduledThreadPoolExecutor executor = new ScheduledThreadPoolExecutor(20);
+    private static final ScheduledThreadPoolExecutor executor = new ScheduledThreadPoolExecutor(5);
 
 	/**
 	 * 

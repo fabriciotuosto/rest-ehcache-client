@@ -16,7 +16,7 @@ import org.ehcache.rest.client.util.Preconditions;
  * byte arrays
  *
  */
-class ObjectHelper {
+class ByteArrays {
 
 	private static final byte[] EMPTY_ARRAY = new byte[0];
 	
@@ -27,7 +27,7 @@ class ObjectHelper {
 	 *   the argument must implements Serializable interface
 	 * @return a byte array representation of the serialized object
 	 */
-	public byte[] objectToByteArray(Serializable o){
+	public byte[] toByteArray(Serializable o){
 		Preconditions.checkNotNull(o);
         ByteArrayOutputStream bos = new ByteArrayOutputStream();
         ObjectOutputStream oos = null;
@@ -35,8 +35,7 @@ class ObjectHelper {
         try{
         	oos = new ObjectOutputStream(bos);
         	oos.writeObject(o);
-        	oos.flush();
-        	
+        	oos.flush();        	
         	transformed = bos.toByteArray();
         } catch (IOException e) {
 			throw new Error("Unable to transform object to byte array",e);
@@ -55,7 +54,7 @@ class ObjectHelper {
 	 * @return an Object created from the deserialization of the
 	 * byte array
 	 */
-	public Serializable objectFromByteArray(byte[] array){
+	public Serializable fromByteArray(byte[] array){
 		Preconditions.checkNotNull(array);
 		Serializable result = null;
 		ObjectInputStream ois = null;

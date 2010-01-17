@@ -4,16 +4,16 @@
 	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.0.xsd">
 		
 		
-		<bean id="helper" class="org.ehcache.rest.client.ObjectHelper">
+		<bean id="byteArrays" class="org.ehcache.rest.client.ByteArrays">
 		</bean>
 
 
 		<bean id="md5hasher" class="org.ehcache.rest.client.Md5ObjectHasher">
-			<constructor-arg ref="helper" />
+			<constructor-arg ref="byteArrays" />
 		</bean>
 		
 		<bean id="sha1hasher" class="org.ehcache.rest.client.Sha1ObjectHasher">
-			<constructor-arg ref="helper" />
+			<constructor-arg ref="byteArrays" />
 		</bean>
 		
 		<bean id="restTemplate" class="org.springframework.web.client.RestTemplate">
@@ -21,7 +21,7 @@
 
 		<bean id="restClient" class="org.ehcache.rest.client.RestClient">
 			<constructor-arg ref="restTemplate" />
-			<constructor-arg ref="helper" />
+			<constructor-arg ref="byteArrays" />
 		</bean>
 
 		<bean id="location" class="org.ehcache.rest.client.CacheLocation">

@@ -1,15 +1,15 @@
 package org.ehcache.rest.client;
 
-import org.ehcache.rest.client.ObjectHasher;
-import org.ehcache.rest.client.ObjectHelper;
+import org.ehcache.rest.client.HashGenerator;
+import org.ehcache.rest.client.ByteArrays;
 import org.ehcache.rest.client.Sha1ObjectHasher;
 
-public class Sha1ObjectHashserTest extends ObjectHasherTest {
+public class Sha1ObjectHashserTest extends HashGeneratorContractTest {
 
-	private final ObjectHasher hasher = new Sha1ObjectHasher(new ObjectHelper());
+	private final HashGenerator hasher = new Sha1ObjectHasher(new ByteArrays());
 	
 	@Override
-	protected ObjectHasher getHasher() {
+	protected HashGenerator getHasher() {
 		return hasher;
 	}
 

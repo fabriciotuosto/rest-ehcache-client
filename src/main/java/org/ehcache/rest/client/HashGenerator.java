@@ -12,7 +12,7 @@ import java.io.Serializable;
  * may want to hash as a simpler result to enable debugging within the
  * cache.
  */
-interface ObjectHasher {
+interface HashGenerator {
 
     /**
      * Hash the passed object, producing a String which can be used as
@@ -23,5 +23,5 @@ interface ObjectHasher {
      * @param object the object to be hashed
      * @return the hashed version of the object
      */
-    public String hashObject(Serializable object);
+    public String generateHash(Serializable object);
 }

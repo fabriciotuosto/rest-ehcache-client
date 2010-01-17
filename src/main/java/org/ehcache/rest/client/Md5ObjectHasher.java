@@ -9,18 +9,18 @@ import org.slf4j.LoggerFactory;
 
 
 /**
- * @see ObjectHasher
+ * @see HashGenerator
  */
-class Md5ObjectHasher implements ObjectHasher {
+class Md5ObjectHasher implements HashGenerator {
 
 	/**
 	 * Logger for the class.
 	 */
 	private static final Logger log = LoggerFactory.getLogger(Md5ObjectHasher.class);
 	
-	private final ObjectHelper transformer;
+	private final ByteArrays transformer;
 	
-	public Md5ObjectHasher(ObjectHelper transformer) {
+	public Md5ObjectHasher(ByteArrays transformer) {
 		this.transformer = Preconditions.checkNotNull(
 				transformer, "Transform shouldn't be null");
 	}
@@ -34,9 +34,9 @@ class Md5ObjectHasher implements ObjectHasher {
      * @param object the object to be hashed
      * @return the hashed version of the object
      */
-    public String hashObject(Serializable object) {
+    public String generateHash(Serializable object) {
     	Preconditions.checkNotNull(object,"Serializable object should not be null");
-    	byte[] md5 = DigestUtils.md5(transformer.objectToByteArray(object));
+    	byte[] md5 = DigestUtils.md5(transformer.toByteArray(object));
     	String md5String = DigestUtils.md5Hex(md5);
     	if(log.isDebugEnabled()){
     		log.debug("MD5 hash result is = {}",md5String);

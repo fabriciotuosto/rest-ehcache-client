@@ -1,14 +1,14 @@
 package org.ehcache.rest.client;
 
 import org.ehcache.rest.client.Md5ObjectHasher;
-import org.ehcache.rest.client.ObjectHasher;
-import org.ehcache.rest.client.ObjectHelper;
+import org.ehcache.rest.client.HashGenerator;
+import org.ehcache.rest.client.ByteArrays;
 
-public class Md5ObjectHashserTest extends ObjectHasherTest {
-	private final ObjectHasher hasher = new Md5ObjectHasher(new ObjectHelper());
+public class Md5ObjectHashserTest extends HashGeneratorContractTest {
+	private final HashGenerator hasher = new Md5ObjectHasher(new ByteArrays());
 	
 	@Override
-	protected ObjectHasher getHasher() {
+	protected HashGenerator getHasher() {
 		return hasher;
 	}
 

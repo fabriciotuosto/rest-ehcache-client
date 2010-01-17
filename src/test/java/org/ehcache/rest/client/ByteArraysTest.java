@@ -2,36 +2,36 @@ package org.ehcache.rest.client;
 
 import static org.junit.Assert.*;
 
-import org.ehcache.rest.client.ObjectHelper;
+import org.ehcache.rest.client.ByteArrays;
 import org.junit.Before;
 import org.junit.Test;
 
 
-public class ObjectHelperTest {
+public class ByteArraysTest {
 
-	private ObjectHelper transformer; 
+	private ByteArrays transformer; 
 	
 	@Before
 	public void createTransformer(){
-		transformer = new ObjectHelper();
+		transformer = new ByteArrays();
 	}
 	
 	@Test(expected=IllegalArgumentException.class)
 	public void should_throw_exception(){
-		transformer.objectToByteArray(null);
+		transformer.toByteArray(null);
 	}
 	
 	@Test
 	public void should_return_object_transformed(){
 		String o = "123456789";
-		assertNotNull(transformer.objectToByteArray(o));
+		assertNotNull(transformer.toByteArray(o));
 	}
 	
 	@Test
 	public void should_return_same_transformation(){
 		String o = "123456789";
-		byte[] first = transformer.objectToByteArray(o);
-		byte[] second = transformer.objectToByteArray(o);
+		byte[] first = transformer.toByteArray(o);
+		byte[] second = transformer.toByteArray(o);
 		assertArrayEquals(first, second);
 	}
 	
@@ -40,8 +40,8 @@ public class ObjectHelperTest {
 	public void should_return_different_transformation(){
 		String o = "123456789";
 		String o2 = "123459786";
-		byte[] first = transformer.objectToByteArray(o);
-		byte[] second = transformer.objectToByteArray(o2);
+		byte[] first = transformer.toByteArray(o);
+		byte[] second = transformer.toByteArray(o2);
 		
 		assertDifferentArrays(first,second);
 	}

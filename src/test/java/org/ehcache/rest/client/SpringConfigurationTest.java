@@ -18,7 +18,6 @@ public class SpringConfigurationTest extends TestCase {
 	
 	public void testSpringCreation() throws Exception {
 		Cache location = (Cache) context.getBean("cache");
-		
 		assertNotNull(location);
 	}
 

@@ -9,27 +9,27 @@ import java.util.Arrays;
 import java.util.HashSet;
 import java.util.Set;
 
-import org.ehcache.rest.client.ObjectHasher;
 import org.junit.Test;
 
 
 /**
  * Tests that the Md5ObjectHasher hashes values in a consistent manner.
  */
-public abstract class ObjectHasherTest {
+public abstract class HashGeneratorContractTest {
 
-    protected abstract ObjectHasher getHasher();
+	protected abstract HashGenerator getHasher();	
+	
     @Test
     public void testStringHash() {
 
-        String hash = getHasher().hashObject("Hash me");
+        String hash = getHasher().generateHash("Hash me");
         assertNotNull("Hash must not be null", hash);
     }
 
     @Test
     public void testObjectHash() {
 
-        String hash = getHasher().hashObject(new ArrayList<Object>());
+        String hash = getHasher().generateHash(new ArrayList<Object>());
         assertNotNull("Hash must not be null", hash);
     }
 
@@ -43,7 +43,7 @@ public abstract class ObjectHasherTest {
         obj2.add("B");
 
         assertTrue("Hashes must not be the same",
-                !getHasher().hashObject(obj1).equals(getHasher().hashObject(obj2)));
+                !getHasher().generateHash(obj1).equals(getHasher().generateHash(obj2)));
     }
 
     @Test
@@ -56,16 +56,16 @@ public abstract class ObjectHasherTest {
         obj2.add("A");
 
         assertEquals("Hashes should be the same",
-        		getHasher().hashObject(obj1), getHasher().hashObject(obj2));
+        		getHasher().generateHash(obj1), getHasher().generateHash(obj2));
     }
 
     @Test
     public void testHashHasValidChars() {
 
-        validateChars(getHasher().hashObject("Hash me"));
-        validateChars(getHasher().hashObject("and me too"));
-        validateChars(getHasher().hashObject(new ArrayList<String>()));
-        validateChars(getHasher().hashObject(new Object[]{}));
+        validateChars(getHasher().generateHash("Hash me"));
+        validateChars(getHasher().generateHash("and me too"));
+        validateChars(getHasher().generateHash(new ArrayList<String>()));
+        validateChars(getHasher().generateHash(new Object[]{}));
     }
 
     private void validateChars(String hash) {

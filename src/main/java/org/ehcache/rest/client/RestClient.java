@@ -14,25 +14,46 @@ import org.springframework.web.client.RestTemplate;
 
 class RestClient {
 
+	/**
+	 * 
+	 */
 	private final RestTemplate restTemplate;
-	private final ObjectHelper helper;
+	
+	/**
+	 * 
+	 */
+	private final ByteArrays helper;
 
-
-	public RestClient(RestTemplate restTemplate,ObjectHelper helper) {
+	/**
+	 * 
+	 * @param restTemplate
+	 * @param helper
+	 */
+	public RestClient(RestTemplate restTemplate,ByteArrays helper) {
 		this.restTemplate = Preconditions.checkNotNull(restTemplate);
 		this.helper = Preconditions.checkNotNull(helper);
 	}
 	
-	
+	/**
+	 * 
+	 * @param url
+	 * @param value
+	 * @return
+	 */
 	public boolean put(String url,Serializable value){
 		try{
-			restTemplate.put(url,helper.objectToByteArray(value));
+			restTemplate.put(url,helper.toByteArray(value));
 			return true;
 		}catch (HttpClientErrorException e) {
 			return false;
 		}
 	}
 	
+	/**
+	 * 
+	 * @param url
+	 * @return
+	 */
 	public boolean delete(String url){
 		try{
 			restTemplate.delete(url);
@@ -42,14 +63,31 @@ class RestClient {
 		}
 	}
 	
+	/**
+	 * 
+	 * @param url
+	 * @return
+	 */
 	public Serializable get(String url){
 		try{
-			return restTemplate.execute(url, HttpMethod.GET,null,new SerializableObjectResponseExtractor());
+			return restTemplate.execute(url, HttpMethod.GET,null,new SerializableObjectResponseExtractor(helper));
 		}catch (HttpClientErrorException e) {
 			return null;
 		}
 	}
+	
+	/**
+	 * 
+	 *
+	 *
+	 */
 	private static class SerializableObjectResponseExtractor implements ResponseExtractor<Serializable>{
+
+		private final ByteArrays objectHelper;
+
+		SerializableObjectResponseExtractor(ByteArrays helper) {
+			objectHelper = helper;
+		}
 
 		@Override
 		public Serializable extractData(ClientHttpResponse arg0)
@@ -58,7 +96,7 @@ class RestClient {
 			try {
 				outBytes = new ByteArrayOutputStream();
 				IOUtils.copy(arg0.getBody(), outBytes);
-				return new ObjectHelper().objectFromByteArray(outBytes.toByteArray());
+				return objectHelper.fromByteArray(outBytes.toByteArray());
 			} finally{
 				IOUtils.closeQuietly(outBytes);
 			}

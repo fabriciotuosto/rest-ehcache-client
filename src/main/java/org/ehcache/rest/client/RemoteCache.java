@@ -10,7 +10,6 @@ import org.slf4j.LoggerFactory;
  * Cache implementation which communicates with a remote cache instance based on
  * EhCache server.
  * 
- * TODO - implement the asynchronous mode of operation
  */
 class RemoteCache implements Cache {
 
@@ -24,7 +23,7 @@ class RemoteCache implements Cache {
 	 * Utility used to hash object keys to Strings suitable for use as keys in
 	 * the remote cache.
 	 */
-	private final ObjectHasher hasher;
+	private final HashGenerator hasher;
 
 	/**
 	 * 
@@ -45,7 +44,7 @@ class RemoteCache implements Cache {
 	 * @param hasher
 	 */
 	public RemoteCache(CacheLocation cacheLocation, RestClient restClient,
-			ObjectHasher hasher) {
+			HashGenerator hasher) {
 		this.restClient = Preconditions.checkNotNull(restClient);
 		this.baseUrl = Preconditions.checkNotNull(cacheLocation)
 				.getBaseCacheUrl();
@@ -80,7 +79,7 @@ class RemoteCache implements Cache {
 	}
 
 	private String getCacheKeyUrl(Serializable key) {
-		String hashKey = baseUrl + "/" + hasher.hashObject(key);
+		String hashKey = baseUrl + "/" + hasher.generateHash(key);
 		log.info(hashKey);
 		return hashKey;
 	}
