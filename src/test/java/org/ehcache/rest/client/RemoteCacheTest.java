@@ -31,7 +31,7 @@ public class RemoteCacheTest {
 
     @BeforeClass
     public static void createLocation(){
-    	location = new CacheLocation("localhost", 80, "rest/dpfsm", "name");    	
+    	location = new CacheLocation("localhost", 80, "ehcache/rest", "name");    	
     }
 	
 	@Before
