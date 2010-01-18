@@ -18,8 +18,15 @@ class Md5HashGenerator implements HashGenerator {
 	 */
 	private static final Logger log = LoggerFactory.getLogger(Md5HashGenerator.class);
 	
+	/**
+	 * 
+	 */
 	private final ByteArrays transformer;
 	
+	/**
+	 * 
+	 * @param transformer
+	 */
 	public Md5HashGenerator(ByteArrays transformer) {
 		this.transformer = Preconditions.checkNotNull(
 				transformer, "Transform shouldn't be null");

@@ -29,6 +29,9 @@ class Sha1HashGenerator implements HashGenerator {
 				byteArrays, "Transform shouldn't be null");
 	}
 	
+	/**
+	 * 
+	 */
 	public String generateHash(Serializable object) {
     	Preconditions.checkNotNull(object,"Serializable object should not be null");
     	byte[] sha1 = DigestUtils.sha(byteArrays.toByteArray(object));
