@@ -12,7 +12,7 @@
     <category name="org.apache">
         <priority value="error"/>
     </category>
-    <category name="org.spring">
+    <category name="org.springframework">
         <priority value="error"/>
     </category>
     <root>
