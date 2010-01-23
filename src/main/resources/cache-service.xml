@@ -24,7 +24,7 @@
 			<constructor-arg ref="byteArrays" />
 		</bean>
 
-		<bean id="location" class="org.ehcache.rest.client.CacheLocation">
+		<bean id="location" class="org.ehcache.rest.client.CacheURI">
 			<constructor-arg value="192.168.1.131" />
 			<constructor-arg value="8080" />
 			<constructor-arg value="ehcache/rest" />

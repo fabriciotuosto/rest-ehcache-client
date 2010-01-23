@@ -25,13 +25,13 @@ import org.junit.Test;
 public class RemoteCacheTest {
 
     private Cache cache;
-    private static CacheLocation location;
+    private static CacheURI location;
     private Md5HashGenerator hasher = new Md5HashGenerator(new ByteArrays());
 	private RestClient restClient;
 
     @BeforeClass
     public static void createLocation(){
-    	location = new CacheLocation("localhost", 80, "ehcache/rest", "name");    	
+    	location = new CacheURI("localhost", 80, "ehcache/rest", "name");    	
     }
 	
 	@Before

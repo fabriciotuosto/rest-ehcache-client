@@ -1,5 +1,7 @@
 package org.ehcache.rest.client;
 
+import java.net.URI;
+
 import org.ehcache.rest.client.util.Preconditions;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -8,35 +10,55 @@ import org.slf4j.LoggerFactory;
 /**
  * Simple object which will construct the url for a cache instance.
  */
-public class CacheLocation {
+public class CacheURI {
 
     /**
      * Logger for the class.
      */
-    private static final Logger log = LoggerFactory.getLogger(CacheLocation.class);
+    private static final Logger log = LoggerFactory.getLogger(CacheURI.class);
 
     /**
      * The url for the cache service.
      */
-    private final String baseCacheUrl;
+    private final URI baseCacheUrl;
 
     /**
-     * Construct a url for the cache service.
+     * Construct a uri for the cache service.
      *
      * @param host the host on which the cache is located
      * @param port the port number the cache service is running on
      * @param path the path of the cache service
      * @param cacheName the name of the cache to use;
      */
-    public CacheLocation(String host,int port,String path,String cacheName) {
+    public CacheURI(String host,int port,String path,String cacheName) {
+    	this("http://"+host+":"+port+"/"+path+"/"+cacheName);
     	Preconditions.checkNotNulls(host,path,cacheName);
-        this.baseCacheUrl = "http://"+host+":"+port+"/"+path+"/"+cacheName;
         if (log.isInfoEnabled()){
         	log.info("Creating url: [{}] for cache on host [{}], port [{}] with path [{}]",
         			new Object[]{baseCacheUrl, host, Integer.valueOf(port), path});
         }
     }
 
+    
+    /**
+     * Constructs a URI location of the cache the url must be a rest uri based on http
+     * should look like "http://host:port/ehcache/rest/cacheName
+     * @param url
+     */
+    public CacheURI(String url){
+    	this(URI.create(url));
+    }
+    
+    /**
+     * Constructs a URI location of the cache the url must be a rest uri based on http
+     * should look like "http://host:port/ehcache/rest/cacheName
+     */
+    public CacheURI(URI uri){
+    	this.baseCacheUrl = Preconditions.checkNotNull(uri);
+    	if (log.isInfoEnabled()){
+        	log.info("Creating url: [{}]",baseCacheUrl);
+        }
+    }
     /**
      * Get the base url for this cache server. Actual cache instances will be extensions
      * to this url.
@@ -44,7 +66,7 @@ public class CacheLocation {
      * @return the base url
      */
     public String getBaseCacheUrl() {
-        return baseCacheUrl;
+        return baseCacheUrl.toString();
     }
 
 }
