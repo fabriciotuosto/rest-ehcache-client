@@ -6,11 +6,6 @@ import org.junit.Test;
 
 import static org.junit.Assert.*;
 
-/**
- * Test that the CacheLocation class constructs URLs correctly.
- *
- * TODO - extend with tests for malformed urls, extra slashes etc.
- */
 public class CacheLocationTest {
 
     @Test

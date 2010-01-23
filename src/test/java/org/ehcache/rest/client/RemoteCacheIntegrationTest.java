@@ -16,7 +16,6 @@ public class RemoteCacheIntegrationTest {
 
 	@Test
 	public void testGetOnMissingValue() {
-
 		assertNull("Empty cache contains a value", cache.get("not-there"));
 	}
 
@@ -56,38 +55,32 @@ public class RemoteCacheIntegrationTest {
 
 	@Test(expected = IllegalArgumentException.class)
 	public void testGetNullKeyThrowsException() {
-
 		cache.get(null);
 	}
 
 	@Test(expected = IllegalArgumentException.class)
 	public void testPutNullKeyThrowsException() {
-
 		cache.put(null, 1234);
 	}
 
 	@Test(expected = IllegalArgumentException.class)
 	public void testPutNullValueThrowsException() {
-
 		cache.put(1234, null);
 	}
 
 	@Test(expected = IllegalArgumentException.class)
 	public void testDeletionNullKeyThrowsException() {
-
 		cache.delete(null);
 	}
 
 	@Test
 	public void testDeletionOfNonExistentItem() {
-
 		assertFalse("Deletion of missing item should be false", cache
 				.delete("missing-key"));
 	}
 
 	@Test
 	public void testDeletionWorksCorrectly() {
-
 		cache.put(1234, 5678);
 
 		assertEquals("Item not retrieved from cache", 5678, cache.get(1234));
@@ -98,7 +91,6 @@ public class RemoteCacheIntegrationTest {
 
 	@Test
 	public void testMultipleValuesAreRetrievable() {
-
 		cache.put(1, "First");
 		cache.put(2, "Another");
 
