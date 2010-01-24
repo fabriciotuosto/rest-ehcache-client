@@ -33,10 +33,6 @@ public class CacheURI {
     public CacheURI(String host,int port,String path,String cacheName) {
     	this("http://"+host+":"+port+"/"+path+"/"+cacheName);
     	Preconditions.checkNotNulls(host,path,cacheName);
-        if (log.isInfoEnabled()){
-        	log.info("Creating url: [{}] for cache on host [{}], port [{}] with path [{}]",
-        			new Object[]{baseCacheUrl, host, Integer.valueOf(port), path});
-        }
     }
 
     
