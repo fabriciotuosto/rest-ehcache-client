@@ -84,5 +84,3 @@ public class RemoteCacheTest {
         assertFalse("Deletion of missing item should be false", cache.delete("missing-key"));
     }
 }
-
-
