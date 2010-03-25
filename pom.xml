@@ -4,6 +4,7 @@
 	<groupId>org.ehcache.rest.client</groupId>
 	<artifactId>rest-cache-client</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
+        <name>Rest client for ehcache</name>
     <build>
         <plugins>
             <plugin>
