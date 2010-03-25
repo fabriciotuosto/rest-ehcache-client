@@ -1,10 +1,9 @@
 package org.ehcache.rest.client;
 
-import static org.junit.Assert.*;
-
-import org.ehcache.rest.client.ByteArrays;
 import org.junit.Before;
 import org.junit.Test;
+
+import static org.junit.Assert.*;
 
 
 public class ByteArraysTest {
@@ -50,7 +49,7 @@ public class ByteArraysTest {
 		assertNotNull(first);
 		assertNotNull(second);
 		int shortest = Math.min(first.length, second.length);
-		boolean equals = true;
+		boolean equals = first.length == second.length;
 		for (int i = 0; i < shortest; i++) {
 			equals = equals && (first[i]==second[i]);
 		}

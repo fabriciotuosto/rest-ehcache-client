@@ -4,5 +4,6 @@
 target
 bin
 *~
-
+.idea
+*.iml
 /output.sql

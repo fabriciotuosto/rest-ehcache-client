@@ -1,10 +1,10 @@
 package org.ehcache.rest.client;
 
+import org.ehcache.rest.client.util.Preconditions;
+
 import java.io.Serializable;
 import java.util.concurrent.ScheduledThreadPoolExecutor;
 import java.util.concurrent.TimeUnit;
-
-import org.ehcache.rest.client.util.Preconditions;
 
 
 
@@ -36,33 +36,14 @@ class TimeOutHandler {
 	 */
 	public TimeOutHandler(Cache cache, Serializable key, Serializable value, Duration duration) {
 		Preconditions.checkNotNulls(cache,key,value,duration);
-		CheckCacheTask checkCacheTask = new CheckCacheTask(cache,key,value);
-		executor.schedule(checkCacheTask, duration.inMiliseconds(),TimeUnit.MILLISECONDS);
-	}
-	
-	/**
-	 * TimerTask thats performs the operations needed to check
-	 * the status of the given tuple key,value in the cache
-	 * it will be triggered after the duration of time elapsed
-	 */
-	private static class CheckCacheTask implements Runnable{
-		
-		private final Cache cache;
-		private final Serializable key;
-		private final Serializable value;
-
-		public CheckCacheTask(Cache cache, Serializable key, Serializable value) {
-			this.cache = cache;
-			this.key = key;
-			this.value = value;
-		}
-
-		public void run() {
+		Runnable checkCacheTask = () -> {
 			Serializable retrievedObject = cache.get(key);
-			if (value.equals(retrievedObject)){
+			if (value.equals(retrievedObject)) {
 				cache.delete(key);
 			}
-		}
+		};
+		executor.schedule(checkCacheTask, duration.inMiliseconds(), TimeUnit.MILLISECONDS);
 	}
+
 
 }

@@ -20,7 +20,7 @@ public interface Cache {
      * @return the matching object from the cache, null if no matching value was found
      * @throws IllegalArgumentException if the key is null
      */
-    public Serializable get(Serializable key);
+    Serializable get(Serializable key);
 
     /**
      * Put the the specified value in the cache at the location specified by the
@@ -35,7 +35,7 @@ public interface Cache {
      * to check whether the insert ultimately succeeded and true will always be returned.
      * @throws IllegalArgumentException if either the key or value is null
      */
-    public boolean put(Serializable key, Serializable value);
+    boolean put(Serializable key, Serializable value);
 
 
     /**
@@ -53,7 +53,7 @@ public interface Cache {
      * to check whether the insert ultimately succeeded and true will always be returned.
      * @throws IllegalArgumentException if either the key or value is null
      */
-    public boolean put(Serializable key, Serializable value, Duration duration);    
+    boolean put(Serializable key, Serializable value, Duration duration);
     
     /**
      * Delete the object with the specified key from the cache. If deletion is
@@ -66,7 +66,7 @@ public interface Cache {
        <code>false</code> otherwise
      * @throws IllegalArgumentException if the key is null
      */
-    public boolean delete(Serializable key);
+    boolean delete(Serializable key);
 
 
 }

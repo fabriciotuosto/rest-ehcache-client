@@ -23,5 +23,5 @@ interface HashGenerator {
      * @param object the object to be hashed
      * @return the hashed version of the object
      */
-    public String generateHash(Serializable object);
+    String generateHash(Serializable object);
 }

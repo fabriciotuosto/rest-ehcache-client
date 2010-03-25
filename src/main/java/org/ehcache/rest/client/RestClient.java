@@ -1,9 +1,5 @@
 package org.ehcache.rest.client;
 
-import java.io.ByteArrayOutputStream;
-import java.io.IOException;
-import java.io.Serializable;
-
 import org.apache.commons.io.IOUtils;
 import org.ehcache.rest.client.util.Preconditions;
 import org.springframework.http.HttpMethod;
@@ -11,6 +7,10 @@ import org.springframework.http.client.ClientHttpResponse;
 import org.springframework.web.client.HttpClientErrorException;
 import org.springframework.web.client.ResponseExtractor;
 import org.springframework.web.client.RestTemplate;
+
+import java.io.ByteArrayOutputStream;
+import java.io.IOException;
+import java.io.Serializable;
 
 class RestClient {
 
@@ -92,13 +92,9 @@ class RestClient {
 		@Override
 		public Serializable extractData(ClientHttpResponse arg0)
 				throws IOException {
-			ByteArrayOutputStream outBytes = null;
-			try {
-				outBytes = new ByteArrayOutputStream();
+			try (ByteArrayOutputStream outBytes = new ByteArrayOutputStream()) {
 				IOUtils.copy(arg0.getBody(), outBytes);
 				return objectHelper.fromByteArray(outBytes.toByteArray());
-			} finally{
-				IOUtils.closeQuietly(outBytes);
 			}
 		}
 	}
