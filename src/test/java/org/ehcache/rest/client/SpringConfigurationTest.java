@@ -2,7 +2,6 @@ package org.ehcache.rest.client;
 
 import junit.framework.TestCase;
 
-import org.ehcache.rest.client.Cache;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 public class SpringConfigurationTest extends TestCase {
